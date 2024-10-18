@@ -2,7 +2,7 @@
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-name: 'my_new_project'
+name: 'dbt_poc'
 version: '1.0.0'
 config-version: 2
 
@@ -37,9 +37,10 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   +materialized: view #default for all other folders in models
-  STAGING:
-    # Applies to all files under models/STAGING/
-    +materialized: view
-  MARTS:
-    # Applies to all files under models/MARTS/
-    +materialized: table
+  dbt_poc:
+    STAGING:
+      # Applies to all files under models/STAGING/
+      +materialized: view
+    MARTS:
+      # Applies to all files under models/MARTS/
+      +materialized: table

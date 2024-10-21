@@ -1,0 +1,1 @@
+select * from {{ ref('FACT_QTY') }} where TOTAL_STOCK < 0

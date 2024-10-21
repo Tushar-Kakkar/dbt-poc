@@ -1,0 +1,9 @@
+models:
+  - name: FACT_QTY
+    description: aggregated qty  
+    columns:
+      - name: I_CATEGORY
+        description: column where accepted values test is added
+        data_tests:
+          - accepted_values:
+              values: ['Jewelry']

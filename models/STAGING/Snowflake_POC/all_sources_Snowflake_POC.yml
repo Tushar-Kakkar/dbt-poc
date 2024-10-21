@@ -1,0 +1,7 @@
+models:
+  - name: STG_Snowflake_POC_Inventory
+    columns:
+      - name: REC_ID
+        data_tests:
+          - unique
+          - not_null

@@ -7,6 +7,9 @@ sources:
     tables:
       - name: inventory
       - name: item
+        columns:
+          - name: I_ITEM_SK
+            data_tests:
+              - unique
+              - not_null
       - name: warehouse
-
-

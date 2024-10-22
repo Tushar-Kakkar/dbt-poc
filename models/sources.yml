@@ -1,0 +1,15 @@
+version: 1
+
+sources:
+  - name: Snowflake_POC #example for us will be org62/files etc ...
+    database: SNOWFLAKE_SAMPLE_DATA  
+    schema: TPCDS_SF100TCL  
+    tables:
+      - name: inventory
+      - name: item
+        columns:
+          - name: I_ITEM_SK
+            data_tests:
+              - unique
+              - not_null
+      - name: warehouse

@@ -1,0 +1,11 @@
+models:
+  - name: STG_Snowflake_POC_Inventory
+    tests:
+      - dbt_utils.expression_is_true:
+          expression: "INV_QUANTITY_ON_HAND > 0"
+    columns:
+      - name: REC_ID
+        data_tests:
+          - unique
+          - not_null
+

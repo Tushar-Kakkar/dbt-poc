@@ -9,7 +9,7 @@ source as (
 renamed as (
 
     select
-        inv_date_sk,
+        inv_date_sk inv_dt_sk,
         inv_item_sk,
         inv_warehouse_sk,
         inv_warehouse_sk+10 as inv_warehouse_sk_new,

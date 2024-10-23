@@ -28,7 +28,8 @@ renamed as (
         i_units,
         i_container,
         i_manager_id,
-        i_product_name
+        i_product_name,
+        {{convert_to_null('i_size','N/A')}} as i_size_new
 
     from source
 

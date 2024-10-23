@@ -1,3 +1,16 @@
+{% set query_to_run %}
+select distinct i_category from {{ ref('STG_Snowflake_POC_Item') }}
+{% endset %}
+
+{% set results = run_query(query_to_run) %}
+
+{% if execute %}
+   {% set item_categories= results.columns[0].values() %}
+   {{item_categories}}
+{% endif %}
+
+
+
 with 
 
 inv as (

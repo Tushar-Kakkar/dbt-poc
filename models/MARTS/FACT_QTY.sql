@@ -1,5 +1,5 @@
 {% set query_to_run %}
-select distinct i_size from {{ ref('STG_Snowflake_POC_Item') }}
+select distinct i_size_new from {{ ref('STG_Snowflake_POC_Item') }}
 {% endset %}
 
 {% set results = run_query(query_to_run) %}
@@ -37,8 +37,8 @@ SELECT
     iv.INV_WAREHOUSE_SK_NEW,
     SUM(iv.inv_quantity_on_hand) AS total_stock,
     {% for size in item_sizes %}
-        {% if size == 'N/A' %}
-            sum(case when i_size = 'N/A' then iv.inv_quantity_on_hand end) as total_stock_NA,
+        {% if size is none() %}
+            sum(case when i_size is null  then iv.inv_quantity_on_hand end) as total_stock_Null,
         {% elif size == 'extra large' %}
             sum(case when i_size = 'extra large' then iv.inv_quantity_on_hand end) as total_stock_extra_large,
         {% else %}

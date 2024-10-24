@@ -1,6 +1,16 @@
+{{
+    config(
+        materialized='incremental'
+    )
+}}
+
 with source as (
 
     select * from {{ source('Snowflake_POC', 'item') }}
+    {% if is_incremental() %}
+        -- this filter will only be applied on an incremental run
+        where i_rec_start_date > (select max(i_rec_start_date) from {{ this }}) 
+    {% endif %}
 
 ),
 

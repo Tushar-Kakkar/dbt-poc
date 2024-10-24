@@ -1,6 +1,9 @@
 {{
     config(
-        materialized='incremental'
+        materialized = 'incremental',
+        unique_key = 'i_item_sk',
+        on_schema_change = 'sync_all_columns',
+        merge_update_columns = ['i_size', 'i_formulation']
     )
 }}
 
@@ -9,7 +12,7 @@ with source as (
     select * from {{ source('Snowflake_POC', 'item') }}
     {% if is_incremental() %}
         -- this filter will only be applied on an incremental run
-        where i_rec_start_date > (select max(i_rec_start_date) from {{ this }}) 
+        where i_rec_start_date > (select dateadd('day', -3, max(i_rec_start_date)) from {{ this }}) 
     {% endif %}
 
 ),
